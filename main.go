@@ -277,7 +277,7 @@ func getClientIP(r *http.Request) string {
 
 // isLocalIP checks if an IP address is from the local network
 func isLocalIP(ipStr string) bool {
-	ip := net.ParseIP(ipStr)
+	ip := net.ParseIP(ipStr).To4()
 	if ip == nil {
 		return false
 	}
