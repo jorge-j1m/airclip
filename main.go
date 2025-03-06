@@ -212,7 +212,7 @@ func handleNotification(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logf("Received notification request from %s: %s\n", getClientIP(r), message)
+	logf("Received notification request from %s: %d chars\n", getClientIP(r), len(message))
 
 	// Send notification and copy to clipboard
 	if err := processNotification(message); err != nil {
@@ -249,8 +249,7 @@ func processNotification(message string) error {
 	notifyCmd := exec.Command("notify-send",
 		"--app-name=NotificationServer",
 		"--icon=dialog-information",
-		"Message Received",
-		fmt.Sprintf("%s\n\n(Text copied to clipboard)", message),
+		"Text copied to clipboard from Airclip",
 	)
 
 	return notifyCmd.Run()
