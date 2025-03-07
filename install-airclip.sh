@@ -79,6 +79,8 @@ Type=simple
 User=$USERNAME
 ExecStart=$EXEC_PATH
 Environment=DISPLAY=:0
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$USER_ID/bus
+Environment=XDG_RUNTIME_DIR=/run/user/$USER_ID
 Restart=on-failure
 
 [Install]
