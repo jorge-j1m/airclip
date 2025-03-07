@@ -61,6 +61,34 @@ go build -o airclip main.go
 
 The server will display all available local IP addresses. Note the IP address you want to use.
 
+### Setting up Airclip as a Service
+
+To have Airclip start automatically at boot time:
+
+1. The repository includes an installation script (`install-airclip.sh`). Make it executable:
+
+```bash
+chmod +x install-airclip.sh
+```
+
+2. Run it with sudo:
+
+```bash
+sudo ./install-airclip.sh
+```
+
+4. When prompted, provide the path to your compiled Airclip binary.
+
+That's it! Airclip will now start automatically whenever your system boots.
+
+#### Managing the Airclip Service
+
+- Check status: `systemctl status airclip.service`
+- Start manually: `sudo systemctl start airclip.service`
+- Stop service: `sudo systemctl stop airclip.service`
+- Restart service: `sudo systemctl restart airclip.service`
+- View logs: `journalctl -u airclip.service`
+
 ### iOS Shortcut Setup
 
 1. Open the Shortcuts app on your iPhone
@@ -103,6 +131,7 @@ The server supports several command-line options:
 - **No notifications:** Ensure notify-send is working (`notify-send "Test"`)
 - **Clipboard not working:** Verify xclip installation (`xclip -version`)
 - **Can't find logs:** Look in `/tmp` for timestamped log files (format: `airclip_YYYY-MM-DD_HH-MM-SS.log`)
+- **Service won't start:** Check the service logs with `journalctl -u airclip.service`
 
 ## Use Cases
 
@@ -119,4 +148,4 @@ Airclip is distributed under the MIT license. See LICENSE for more information.
 
 ## Contributing
 
-Contributions to Airclip are welcome! Please feel free to submit a Pull Request.
+Contributions to Airclip are welcome! Please feel free to submit a Pull Request
